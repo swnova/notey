@@ -1,4 +1,4 @@
-# notey
+# notey : Express.js Challenge: Note Taker
 
 ## Description
 In this module we are challenged to create a note taker that can write and save notes.
