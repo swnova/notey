@@ -1,5 +1,5 @@
 const express = require('express');
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 const path = require('path');
 const fs = require('fs');
 const uniqueId = require('generate-unique-id')
@@ -16,16 +16,6 @@ app.get('/notes',(req, res) =>{
     res.sendFile(path.join(__dirname, './public/notes.html'))
 });
 
-// app.get('/notes/:noteId',(req,res)=>{
-//     for (let i = 0; i < newNote.length; i++){
-//         const thisNote = notes[i];
-//         if(thisNote.id==req.params.noteId){
-//             return res.json(thisNote)
-//         }
-
-//     }
-//     return res.status(404).send("note doesnt exist")
-// })
 
 app.post('/api/notes', (req, res)=> {
     let newNote = req.body;
@@ -39,7 +29,6 @@ app.post('/api/notes', (req, res)=> {
     fs.writeFile('./db/db.json', JSON.stringify(allNotes), function (err) {
         if (err) {
             res.json(err);}
-        // pushed into db but need to show on screen
         res.json(newNote);
 });
     
